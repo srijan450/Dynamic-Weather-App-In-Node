@@ -15,25 +15,23 @@ const replaceVal = (temp, orignal) => {
 }
 
 server.on('request', (req, res) => {
-    if (req.url == "/") {
-        requests(`https://api.openweathermap.org/data/2.5/weather?q=varanasi&appid=f1213eed1fc7a1eb9dd4ab8823bf38a1`)
-            .on('data', function (chunk) {
-                const objdata = JSON.parse(chunk)
+    requests(`https://api.openweathermap.org/data/2.5/weather?q=varanasi&appid=f1213eed1fc7a1eb9dd4ab8823bf38a1`)
+        .on('data', function (chunk) {
+            const objdata = JSON.parse(chunk)
 
-                const arrData = [objdata]
+            const arrData = [objdata]
 
-                const realTimeData = arrData.map((val) => {
-                    return replaceVal(homefile, val);
-                })
-                    .join("")
-                res.write(realTimeData);
+            const realTimeData = arrData.map((val) => {
+                return replaceVal(homefile, val);
             })
-            .on('end', function (err) {
-                if (err) return console.log('connection closed due to errors', err);
-                console.log('end');
-                res.end();
-            });
-    }
+                .join("")
+            res.write(realTimeData);
+        })
+        .on('end', function (err) {
+            if (err) return console.log('connection closed due to errors', err);
+            console.log('end');
+            res.end();
+        });
 })
 server.listen(port, 'localhost', (err) => {
     if (err)

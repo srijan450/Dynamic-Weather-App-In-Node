@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require('fs');
 const requests = require('requests');
 
-const homefile = fs.readFileSync("./10DynamicWetherApp/home.html", "utf-8");
+const homefile = fs.readFileSync("./10DynamicWetherApp/index.html", "utf-8");
 
 const server = http.createServer();
 

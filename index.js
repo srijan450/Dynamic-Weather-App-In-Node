@@ -1,7 +1,8 @@
 const http = require("http");
 const fs = require('fs');
+const path = require("path")
 const requests = require('requests');
-const homefile = fs.readFileSync("../10DynamicWetherApp/Home.html", "utf-8");
+const homefile = fs.readFileSync(path.join(__dirname, "./Home.html"), "utf-8");
 const server = http.createServer();
 const port = process.env.port || 5000;
 

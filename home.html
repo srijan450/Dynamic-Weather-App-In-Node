@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="one">
+            <h2> <i class="fas fa-street-view"></i> <span id="city">{% city %}</span></h2>
+            <p id="setdate">...</p>
+
+            <h2 style="margin-top: 20px;" id='temp'>{% tempVal %}</h2>
+            <p id='maxmin'>Min: {% minVal %} | Max: {% maxVal %}</p>
+        </div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="search">
+
+            <input type="search" name="search" id="id" placeholder="serach">
+            <label for="search"><i class="fas fa-search-location"></i></label>
+        </div>
+        <div id="weatherIcon">
+            <i class="fas fa-sun" style="color: #eccc68;"></i>
+
+        </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .box {
+            background-color: rgba(120, 160, 235, 0.562);
+            width: 20%;
+            height: 50%;
+            box-shadow: 2px 2px 30px rgba(39, 14, 14, 0.2), -2px -2px 30px rgba(97, 93, 93, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search {
+            display: grid;
+            grid-template-columns: 1fr 30px;
+            background-color: white;
+
+        }
+
+        input[type='search'] {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            font-size: 20px;
+            font-family: 'Indie Flower', cursive;
+            position: relative;
+        }
+
+        label {
+            line-height: 40px;
+            height: 100%;
+            padding: 5px;
+        }
+
+        label:hover {
+            background-color: rgba(229, 242, 253, 0.973);
+        }
+
+        #weatherIcon {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 70px;
+        }
+
+        p {
+            color: grey;
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2 {
+
+            font-family: 'Indie Flower', cursive;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .one {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            background-color: rgba(229, 242, 253, 0.973);
+            height: 40%;
+            width: 100%;
+            border-radius: 50px 50px 0px 0px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .two {
+            position: absolute;
+            bottom: -40px;
+            left: -20px;
+            background-color: rgba(229, 242, 253, 0.973);
+            height: 250px;
+            width: 250px;
+
+            border-radius: 52% 48% 53% 47% / 51% 57% 43% 49%;
+            animation: animate 1s linear 0s infinite;
+        }
+
+        .three {
+
+            position: absolute;
+            bottom: -120px;
+            left: 20px;
+            background-color: rgba(229, 242, 253, 0.973);
+
+            height: 320px;
+            width: 320px;
+            border-radius: 52% 48% 53% 47% / 51% 57% 43% 49%;
+            animation: animate 2s linear 0s infinite;
+
+        }
+
+        @keyframes animate {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+
+    <script>
+        const weatherIcon = document.getElementById('weatherIcon')
+        const setDate = document.getElementById("setdate");
+        const max_min = document.getElementById('maxmin');
+        const temp = document.getElementById('temp');
+        const city = document.getElementById('city');
+
+        const date = new Date()
+        setDate.innerHTML = date.toDateString() + " | " + date.toLocaleTimeString();
+    </script>
+</body>
+
+</html>

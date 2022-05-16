@@ -1,10 +1,9 @@
 const http = require("http");
 const fs = require('fs');
 const requests = require('requests');
-
-const homefile = fs.readFileSync("./10DynamicWetherApp/index.html", "utf-8");
-
+const homefile = fs.readFileSync("../10DynamicWetherApp/Home.html", "utf-8");
 const server = http.createServer();
+const port = process.env.port || 5000;
 
 const replaceVal = (temp, orignal) => {
     let temprature = temp.replace("{% tempVal %}", Math.round(orignal.main.temp - 273.15))
@@ -26,23 +25,19 @@ server.on('request', (req, res) => {
                     return replaceVal(homefile, val);
                 })
                     .join("")
-                console.log(realTimeData);
                 res.write(realTimeData);
             })
             .on('end', function (err) {
                 if (err) return console.log('connection closed due to errors', err);
-
                 console.log('end');
-
                 res.end();
             });
-
     }
 })
-server.listen(8000, 'localhost', (err) => {
+server.listen(port, 'localhost', (err) => {
     if (err)
-        console.log("sopme error");
+        console.log("server is started");
     else {
-        console.log("servere is started");
+        console.log(`server started at port ${port}`);
     }
 })

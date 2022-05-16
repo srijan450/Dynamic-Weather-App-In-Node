@@ -4,7 +4,7 @@ const path = require("path")
 const requests = require('requests');
 const homefile = fs.readFileSync(path.join(__dirname, "./Home.html"), "utf-8");
 const server = http.createServer();
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 const replaceVal = (temp, orignal) => {
     let temprature = temp.replace("{% tempVal %}", Math.round(orignal.main.temp - 273.15))

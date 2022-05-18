@@ -5,6 +5,7 @@ const requests = require('requests');
 const homefile = fs.readFileSync(path.join(__dirname, "./Home.html"), "utf-8");
 const server = http.createServer();
 const port = process.env.PORT || 5000;
+const host = '0.0.0.0';
 
 const replaceVal = (temp, orignal) => {
     let temprature = temp.replace("{% tempVal %}", Math.round(orignal.main.temp - 273.15))
@@ -32,8 +33,8 @@ server.on('request', (req, res) => {
             console.log('end');
             res.end();
         });
-})
-server.listen(port, 'localhost', (err) => {
+});
+server.listen(port, host, (err) => {
     if (err)
         console.log("server is started");
     else {
